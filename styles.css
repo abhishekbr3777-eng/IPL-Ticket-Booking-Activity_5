@@ -183,7 +183,7 @@ tr:hover {
 }
 
 /* Form Elements */
-input, select {
+input:not([type="checkbox"]):not([type="radio"]), select {
     width: 100%;
     padding: 12px;
     margin: 8px 0 15px;
@@ -194,6 +194,93 @@ input, select {
 
 input:focus, select:focus {
     border-color: var(--secondary);
+}
+
+input[type="checkbox"], input[type="radio"] {
+    width: auto;
+    margin: 0;
+    accent-color: var(--secondary);
+}
+
+.booking-page {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.booking-intro {
+    max-width: 650px;
+    margin: 0 auto 25px;
+    text-align: center;
+}
+
+.ticket-form {
+    padding: 28px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.form-field {
+    margin-bottom: 14px;
+}
+
+.form-field > label {
+    display: block;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.form-field input, .form-field select {
+    margin-bottom: 0;
+}
+
+.form-help {
+    display: block;
+    color: #555555;
+    font-size: 0.9rem;
+}
+
+.ticket-form fieldset {
+    margin: 20px 0;
+    padding: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+.ticket-form legend {
+    padding: 0 6px;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.choice {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.choice label {
+    cursor: pointer;
+}
+
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.form-actions button[type="reset"] {
+    background-color: var(--white);
+    border: 1px solid var(--primary);
+}
+
+.form-status {
+    margin-top: 18px;
+    padding: 12px;
+    color: #155724;
+    background-color: #d4edda;
+    border-radius: 5px;
 }
 
 /* Booking Summary */

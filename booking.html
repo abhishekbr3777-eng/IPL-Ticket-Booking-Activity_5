@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book IPL Tickets</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>IPL 2026 Ticket Booking</h1>
+      <p>Complete the form to check your booking details.</p>
+    </header>
+
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="booking.html" aria-current="page">Book Tickets</a>
+    </nav>
+
+    <main>
+      <section class="booking-page">
+        <div class="booking-intro">
+          <h2>Ticket Booking Form</h2>
+          <p>
+            All six fields are required. Choose between 1 and 10
+            tickets per booking.
+          </p>
+        </div>
+
+        <form class="ticket-form" id="ticket-booking-form" method="post">
+          <div class="form-field">
+            <label for="customer-name">Name</label>
+            <input
+              type="text"
+              id="customer-name"
+              name="name"
+              autocomplete="name"
+              minlength="2"
+              maxlength="60"
+              required
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="customer-email">Email</label>
+            <input
+              type="email"
+              id="customer-email"
+              name="email"
+              autocomplete="email"
+              maxlength="254"
+              required
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="customer-phone">Phone Number</label>
+            <input
+              type="tel"
+              id="customer-phone"
+              name="phone"
+              autocomplete="tel"
+              inputmode="numeric"
+              pattern="[0-9]{10}"
+              minlength="10"
+              maxlength="10"
+              aria-describedby="phone-help"
+              required
+            />
+            <small class="form-help" id="phone-help">
+              Enter a 10-digit phone number using numbers only.
+            </small>
+          </div>
+
+          <div class="form-field">
+            <label for="match">Match Selection</label>
+            <select id="match" name="match" required>
+              <option value="">Select a match</option>
+              <option value="1">RCB vs CSK - Bengaluru</option>
+              <option value="2">MI vs KKR - Mumbai</option>
+              <option value="3">CSK vs MI - Chennai</option>
+              <option value="4">KKR vs RCB - Kolkata</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="stand">Stand Category</label>
+            <select id="stand" name="stand" required>
+              <option value="">Select a stand</option>
+              <option value="general">General</option>
+              <option value="premium">Premium</option>
+              <option value="vip">VIP</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="ticket-count">Number of Tickets</label>
+            <input
+              type="number"
+              id="ticket-count"
+              name="tickets"
+              min="1"
+              max="10"
+              step="1"
+              aria-describedby="ticket-help"
+              required
+            />
+            <small class="form-help" id="ticket-help">
+              You can book between 1 and 10 tickets.
+            </small>
+          </div>
+
+          <fieldset>
+            <legend>Additional preferences (optional)</legend>
+            <div class="choice">
+              <input
+                type="checkbox"
+                id="accessible-seating"
+                name="accessible-seating"
+                value="yes"
+              />
+              <label for="accessible-seating">I need accessible seating</label>
+            </div>
+            <div class="choice">
+              <input
+                type="checkbox"
+                id="match-updates"
+                name="match-updates"
+                value="yes"
+              />
+              <label for="match-updates">Email me match-day updates</label>
+            </div>
+          </fieldset>
+
+          <div class="form-actions">
+            <button type="submit">Submit Booking Details</button>
+            <button type="reset">Reset Form</button>
+          </div>
+
+          <p class="form-status" id="form-status" role="status" hidden></p>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 IPL Ticket Booking Website. All Rights Reserved.</p>
+      <p>Demo form - no real booking is submitted.</p>
+    </footer>
+
+    <script>
+      const form = document.getElementById("ticket-booking-form");
+      const matchField = document.getElementById("match");
+      const status = document.getElementById("form-status");
+      const requestedMatch = new URLSearchParams(window.location.search).get(
+        "match",
+      );
+
+      if (
+        requestedMatch &&
+        Array.from(matchField.options).some(
+          (option) => option.value === requestedMatch,
+        )
+      ) {
+        matchField.value = requestedMatch;
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        status.textContent =
+          "Your details are valid. This demo does not submit a real booking.";
+        status.hidden = false;
+      });
+
+      form.addEventListener("reset", () => {
+        status.hidden = true;
+        status.textContent = "";
+      });
+    </script>
+  </body>
+</html>
