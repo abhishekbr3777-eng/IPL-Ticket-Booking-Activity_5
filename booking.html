@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book IPL Tickets</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
   </head>
 
   <body>
@@ -15,7 +16,7 @@
 
     <nav aria-label="Main navigation">
       <a href="index.html">Home</a>
-      <a href="booking.html" aria-current="page">Book Tickets</a>
+      <a href="#ticket-booking-form" aria-current="page">Book Tickets</a>
     </nav>
 
     <main>
@@ -138,7 +139,6 @@
             <button type="reset">Reset Form</button>
           </div>
 
-          <p class="form-status" id="form-status" role="status" hidden></p>
         </form>
       </section>
     </main>
@@ -147,35 +147,5 @@
       <p>&copy; 2026 IPL Ticket Booking Website. All Rights Reserved.</p>
       <p>Demo form - no real booking is submitted.</p>
     </footer>
-
-    <script>
-      const form = document.getElementById("ticket-booking-form");
-      const matchField = document.getElementById("match");
-      const status = document.getElementById("form-status");
-      const requestedMatch = new URLSearchParams(window.location.search).get(
-        "match",
-      );
-
-      if (
-        requestedMatch &&
-        Array.from(matchField.options).some(
-          (option) => option.value === requestedMatch,
-        )
-      ) {
-        matchField.value = requestedMatch;
-      }
-
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        status.textContent =
-          "Your details are valid. This demo does not submit a real booking.";
-        status.hidden = false;
-      });
-
-      form.addEventListener("reset", () => {
-        status.hidden = true;
-        status.textContent = "";
-      });
-    </script>
   </body>
 </html>
